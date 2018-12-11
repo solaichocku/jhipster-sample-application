@@ -1,0 +1,15 @@
+version: '2'
+services:
+    welcome2cp-app:
+        image: welcome2cp
+        environment:
+            - _JAVA_OPTIONS=-Xmx512m -Xms256m
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:mysql://welcome2cp-mysql:3306/welcome2cp?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    welcome2cp-mysql:
+        extends:
+            file: mysql.yml
+            service: welcome2cp-mysql
